@@ -1,0 +1,4 @@
+SecurityEvent
+| where EventID == 4624 // Logon Type 3 (Network) typically used in PtH attacks
+| summarize CountLogons = count() by Account
+| where CountLogons > 50
