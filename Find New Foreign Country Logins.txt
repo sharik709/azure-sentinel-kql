@@ -1,0 +1,4 @@
+SigninLogs
+| where CountryOrRegion !in ("YourCountry1", "YourCountry2") // replace with your country
+| summarize Users = dcount(UserPrincipalName) by CountryOrRegion
+| order by Users desc
