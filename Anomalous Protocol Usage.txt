@@ -1,0 +1,5 @@
+# Anomalous Protocol Usage: Identify unusual protocol usage which might indicate command and control activity.
+CommonSecurityLog
+| where Protocol !in ("HTTP", "HTTPS", "SSH", "RDP") // common protocols
+| summarize Count = count() by Protocol
+| order by Count desc
