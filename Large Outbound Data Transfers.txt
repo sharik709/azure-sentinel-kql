@@ -1,0 +1,6 @@
+Large Outbound Data Transfers: Spot potential data exfiltration by identifying large outbound data transfers.
+CommonSecurityLog
+| where Action == "Allowed"
+| extend DataVolumeMB = todouble(BytesSent) / (1024*1024)
+| summarize TotalDataMB = sum(DataVolumeMB) by DestinationIP, bin(TimeGenerated, 1h)
+| where TotalDataMB > 1000 // Adjust threshold based on normal baseline
