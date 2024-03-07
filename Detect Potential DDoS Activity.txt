@@ -1,0 +1,4 @@
+CommonSecurityLog
+| where Activity == "Deny"
+| summarize CountRequests = count() by SourceIP, bin(TimeGenerated, 1h)
+| where CountRequests > 1000
